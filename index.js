@@ -7,6 +7,7 @@ var path = require('path');
 var mime = require('mime');
 
 module.exports = function(opt) {
+  if (!opt) opt = {};
 	opt.maxWeightResource = opt.maxWeightResource || 10240;
 
 	// create a stream through which each file will pass
