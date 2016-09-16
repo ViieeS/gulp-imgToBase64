@@ -3,13 +3,12 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var cheerio = require('cheerio');
 var fs = require('fs');
-var path = require('path');
 var mime = require('mime');
 
 module.exports = function(opt) {
   if (!opt) opt = {};
 	opt.maxWeightResource = opt.maxWeightResource || 10240;
-	opt.base = opt.base || null;
+	opt.base = opt.base || '';
 
 	// create a stream through which each file will pass
 	return through.obj(function(file, enc, callback) {
@@ -33,7 +32,7 @@ module.exports = function(opt) {
 					var isdata = ssrc.indexOf("data");
 					if (ssrc != "" && typeof ssrc != 'undefined' && isdata !== 0) {
 
-            var spath = path.join(opt.base ? opt.base : path.dirname(file.path), ssrc);
+            var spath = opt.base + ssrc;
 
 						// locate the file in the system
 						var exist = fs.existsSync(spath);
