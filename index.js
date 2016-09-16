@@ -9,6 +9,7 @@ var mime = require('mime');
 module.exports = function(opt) {
   if (!opt) opt = {};
 	opt.maxWeightResource = opt.maxWeightResource || 10240;
+	opt.base = opt.base || null;
 
 	// create a stream through which each file will pass
 	return through.obj(function(file, enc, callback) {
@@ -31,7 +32,9 @@ module.exports = function(opt) {
 					var ssrc = this.attr('src');
 					var isdata = ssrc.indexOf("data");
 					if (ssrc != "" && typeof ssrc != 'undefined' && isdata !== 0) {
-						var spath = path.join(path.dirname(file.path), ssrc);
+
+            var spath = path.join(opt.base ? opt.base : path.dirname(file.path), ssrc);
+
 						// locate the file in the system
 						var exist = fs.existsSync(spath);
 						if (!exist) {
