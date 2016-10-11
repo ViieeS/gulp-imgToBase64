@@ -37,7 +37,7 @@ module.exports = function(opt) {
 						// locate the file in the system
 						var exist = fs.existsSync(spath);
 						if (!exist) {
-							console.log("Can't find " + spath);
+              if (opt.debug) console.log("Can't find " + spath);
 							return;
 						}
 						var mtype = mime.lookup(spath);
