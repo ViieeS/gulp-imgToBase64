@@ -10,6 +10,7 @@ module.exports = function (opt) {
     opt.maxWeightResource = opt.maxWeightResource || 10240;
     opt.base = opt.base || '';
     opt.exclude = opt.exclude || [];
+    opt.debug = opt.debug || false;
 
     // create a stream through which each file will pass
     return through.obj(function (file, enc, callback) {
