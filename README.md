@@ -19,6 +19,16 @@ gulp.task('default', function () {
 });
 ```
 
+##### with options:
+
+```js
+.pipe(img64({
+	base: './img',
+	maxWeightResource: 30 * 1024, // bytes
+	exclude: ['.svg', '.png'],
+	debug: true // warning if file is not found
+}))
+```
 
 ##### index.html // Before...
 
